@@ -45,7 +45,7 @@ const Index = () => {
   ];
 
   const handleActivation = () => {
-    if (activationCode.trim()) {
+    if (activationCode.trim() === '202601702') {
       setIsActivated(true);
     }
   };

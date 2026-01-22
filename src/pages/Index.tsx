@@ -6,11 +6,13 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [isActivated, setIsActivated] = useState(false);
   const [activationCode, setActivationCode] = useState('');
+  const { toast } = useToast();
 
   const pilotData = {
     name: 'Капитан Ахмед Хасан',
@@ -47,6 +49,16 @@ const Index = () => {
   const handleActivation = () => {
     if (activationCode.trim() === '202601702') {
       setIsActivated(true);
+      toast({
+        title: 'Добро пожаловать!',
+        description: 'Активация прошла успешно. Приятных полётов!',
+      });
+    } else {
+      toast({
+        title: 'Ошибка активации',
+        description: 'Неверный код активации. Проверьте правильность ввода.',
+        variant: 'destructive',
+      });
     }
   };
 
